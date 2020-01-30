@@ -34,6 +34,6 @@ do {
 
 for (i = 0; i < arr.length; i++) {
   if (arr[i]) {
-    console.log(i);
+    console.log(i, ' Делители этого числа ', 1, ' и ', i );
   }
 }
