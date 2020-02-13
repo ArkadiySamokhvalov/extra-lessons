@@ -9,6 +9,17 @@ class DomElement {
     this.fontSize = fontSize;
     this.text = text;
   }
+
+  moveElement(element, key) {
+    element.style.position = 'absolute';
+    if (key.keyCode === 37 || key.keyCode === 39) {
+      element.style.left = element.offsetLeft + (key.keyCode === 37 ? -10 : 10) + 'px';
+    }
+    if (key.keyCode === 38 || key.keyCode === 40) {
+      element.style.top = element.offsetTop + (key.keyCode === 38 ? -10 : 10) + 'px';
+    }
+  }
+
   createElement() {
     let element = '';
     let arr = [];
@@ -40,17 +51,18 @@ class DomElement {
       element.style.cssText = cssText;
     }
     if (this.text !== '') {
-      element.textContent = this.text ;
+      element.textContent = this.text;
     }
 
     return element;
   }
 }
 
-let obj = new DomElement('span.text', 'text');
-let el = obj.createElement();
-document.body.appendChild(el);
-
-let obj2 = new DomElement('#block', 'block', '500px', '350px', 'red', '35px');
-let el2 = obj2.createElement();
-document.body.appendChild(el2);
+document.addEventListener("DOMContentLoaded", function (event) {
+  let obj = new DomElement('#block', '', '100px', '100px', 'green');
+  let el = obj.createElement();
+  document.body.appendChild(el);
+  document.addEventListener('keydown', (key) => {
+    obj.moveElement(el, key);
+  });
+});
